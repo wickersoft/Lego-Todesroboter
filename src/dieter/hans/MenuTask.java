@@ -7,24 +7,24 @@ public class MenuTask extends RobotTask {
 	private boolean firstRun = true;
 	
 	@Override
-	public RobotState run() {
+	public int run() {
 		TextMenu menu = new TextMenu(new String[] {"Brücke", "Labyrinth", "Linie", "Hindernis"}, 0, "Task wählen");
 		TextMenu confirm = new TextMenu(new String[] {"Ja", "Nein"}, 0, "Fo rils?");
 		
 		if(confirm.select() == 1) {
-			return RobotState.MENU;
+			return 0;
 		}
 		
 		switch(menu.select()) {
 		case 0:
-			return RobotState.BRIDGE;
+			return 1;
 		case 1:
-			return RobotState.MAZE;
+			return 2;
 		case 2:
-			return RobotState.ROUNDLINES;
+			return 3;
 		case 3:
-			return RobotState.OBSTACLE;
+			return 4;
 		}
-		return RobotState.MENU;
+		return 0;
 	}
 }

@@ -2,6 +2,6 @@ package dieter.hans;
 
 public abstract class RobotTask {
 	
-	public abstract RobotState run();
+	public abstract int run();
 	
 }
