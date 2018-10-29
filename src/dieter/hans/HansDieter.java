@@ -29,7 +29,7 @@ public class HansDieter {
 	public static final int TURN_PROP = 1;
 	public static float[] rgbValues = new float[3];
 
-	public static void main(String[] args) {
+	public static void main0(String[] args) {
 
 		S_LIT.setFloodlight(Color.WHITE);
 		S_LIT.setFloodlight(true);
