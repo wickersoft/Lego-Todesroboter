@@ -7,7 +7,7 @@ public abstract class TrackTask extends RobotTask {
 	@Override
 	public final int run() {
 		if((Button.getButtons() & Button.ID_ENTER) != 0){
-			return 0;
+			return -1;
 		}
 		return runTrack();
 	}
