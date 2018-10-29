@@ -16,8 +16,8 @@ public class HansDieter {
 	public static final RegulatedMotor M_L = Motor.B;
 	public static final RegulatedMotor M_ULT = Motor.C;
 	public static final RegulatedMotor M_CAN = Motor.D;
-	public static final EV3ColorSensor S_LIT = new EV3ColorSensor(SensorPort.S1);
 	public static final EV3TouchSensor S_BTN = new EV3TouchSensor(SensorPort.S2);
+	private static final EV3ColorSensor S_LIT = new EV3ColorSensor(SensorPort.S1);
 	// public static final EV3UltrasonicSensor S_ULT = new
 	// EV3UltrasonicSensor(SensorPort.S3);
 	public static final EV3GyroSensor S_GYR = new EV3GyroSensor(SensorPort.S4);
@@ -29,7 +29,19 @@ public class HansDieter {
 	public static final int TURN_PROP = 1;
 	public static float[] rgbValues = new float[3];
 
-	public static void main0(String[] args) {
+
+	public static void main(String[] args) {
+		StateMachine sm = new StateMachine();
+		sm.init();
+		while(sm.tick() == 0) {
+		}
+	}
+	
+	
+	
+	
+	
+	public static void lightSensorDebug(String[] args) {
 
 		S_LIT.setFloodlight(Color.WHITE);
 		S_LIT.setFloodlight(true);
