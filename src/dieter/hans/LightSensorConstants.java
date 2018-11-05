@@ -20,6 +20,14 @@ public class LightSensorConstants {
 		return "no color";
 	}
 	
+	public static double getShit(float[] color) {
+		float[] c = new float[3];
+		c[0] = (float) color[0];
+		c[1] = (float) color[1];
+		c[2] = (float) color[2];
+		return getShit(c);
+	}
+	
 	public static double getShit(double[] color)
 	{
 		double dist_black = getDistance(color, FLOOR);
