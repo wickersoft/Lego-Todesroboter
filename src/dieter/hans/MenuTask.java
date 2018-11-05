@@ -1,5 +1,6 @@
 package dieter.hans;
 
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.TextMenu;
 
@@ -18,6 +19,11 @@ public class MenuTask extends RobotTask {
 		}
 		
 		LCD.clear();
+		
+		while(Button.getButtons() != 0) {
+			System.out.println("...");
+		}
+		
 		switch(selection) {
 		case 0:
 			return 1;

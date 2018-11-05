@@ -17,6 +17,7 @@ public abstract class RobotTask {
 		if(code == 0) {
 			return this;
 		} else {
+			MotorController.stop();
 			return transitions.get(code);
 		}
 	}

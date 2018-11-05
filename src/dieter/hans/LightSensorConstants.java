@@ -19,10 +19,10 @@ public class LightSensorConstants {
 	}
 	
 	public static double getShit(float[] color) {
-		float[] c = new float[3];
-		c[0] = (float) color[0];
-		c[1] = (float) color[1];
-		c[2] = (float) color[2];
+		double[] c = new double[3];
+		c[0] = color[0];
+		c[1] = color[1];
+		c[2] = color[2];
 		return getShit(c);
 	}
 	
@@ -31,7 +31,7 @@ public class LightSensorConstants {
 		double dist_black = getDistanceSqr(color, FLOOR);
 		double dist_white = getDistanceSqr(color, WHITE_TAPE);
 		
-		return Math.sqrt(dist_white / (dist_black + dist_white));
+		return -1.0 + 2.0 * Math.sqrt(dist_black / (dist_black + dist_white));
 	}
 	
 	public static double getGrayscale(double[] color)
