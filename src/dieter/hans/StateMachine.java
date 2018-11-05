@@ -20,11 +20,6 @@ public class StateMachine {
 		taskMaze.edge(-1, taskMenu);
 		taskLine.edge(-1, taskMenu);
 		taskObst.edge(-1, taskMenu);
-		
-		taskBridge.edge(-1, taskMenu);
-		taskMaze.edge(-1, taskMenu);
-		taskLine.edge(-1, taskMenu);
-		taskObst.edge(-1, taskMenu);
 	}
 	
 	public int tick() {
