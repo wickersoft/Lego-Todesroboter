@@ -28,8 +28,8 @@ public class LightSensorConstants {
 	
 	public static double getShit(double[] color)
 	{
-		double dist_black = getDistance(color, FLOOR);
-		double dist_white = getDistance(color, WHITE_TAPE);
+		double dist_black = getDistanceSqr(color, FLOOR);
+		double dist_white = getDistanceSqr(color, WHITE_TAPE);
 		
 		return Math.sqrt(dist_white / (dist_black + dist_white));
 	}
@@ -44,7 +44,7 @@ public class LightSensorConstants {
 		return res / 3;
 	}
 	
-	public static double getDistance(double[] color_1, double[] color_2)
+	public static double getDistanceSqr(double[] color_1, double[] color_2)
 	{
 		double res = 0, tmp = 0;
 		
@@ -54,7 +54,7 @@ public class LightSensorConstants {
 			res += tmp * tmp;
 		}
 		
-		return Math.sqrt(res);
+		return res;
 	}
 	
 	static {
