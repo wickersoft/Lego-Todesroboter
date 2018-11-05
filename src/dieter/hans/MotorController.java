@@ -1,6 +1,5 @@
 package dieter.hans;
 
-import lejos.hardware.motor.Motor;
 import lejos.robotics.navigation.DifferentialPilot;
 
 public class MotorController {
@@ -19,11 +18,11 @@ public class MotorController {
 	}
 	
 	public static void setSpeedLine() {
-		pilot.setTravelSpeed(30);
+		pilot.setTravelSpeed(20);
 	}
 	
 	public static void setSpeedBridge() {
-		pilot.setTravelSpeed(20);
+		pilot.setTravelSpeed(30);
 	}
 	
 	public static void steerLeft(int angle) {
@@ -39,6 +38,11 @@ public class MotorController {
 	public static void steerLeft() {
 		pilot.stop();
 		pilot.rotate(90);
+	}
+	
+	public static void steer(double value) {
+		HansDieter.M_L.setSpeed((int)(pilot.getTravelSpeed() * (1 - value)));
+		HansDieter.M_R.setSpeed((int)(pilot.getTravelSpeed() * (1 + value)));
 	}
 	
 	public static void travelForward(double distance) {

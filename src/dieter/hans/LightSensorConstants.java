@@ -2,8 +2,6 @@ package dieter.hans;
 
 import java.util.HashMap;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.BlockAction;
-
 public class LightSensorConstants {
 
 	public static final HashMap<Integer, String> colorIds = new HashMap<>();
