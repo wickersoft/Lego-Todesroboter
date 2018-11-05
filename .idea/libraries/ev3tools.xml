@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ev3tools">
-    <CLASSES>
-      <root url="jar://C:/Program Files/leJOS EV3/lib/pc/ev3tools.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

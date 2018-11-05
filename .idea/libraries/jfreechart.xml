@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jfreechart">
-    <CLASSES>
-      <root url="jar://C:/Program Files/leJOS EV3/lib/pc/3rdparty/jfreechart.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
