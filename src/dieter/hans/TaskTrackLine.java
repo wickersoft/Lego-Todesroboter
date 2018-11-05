@@ -10,25 +10,26 @@ public class TaskTrackLine extends TrackTask
 	@Override
 	public int runTrack()
 	{
-		float[] rgb = new float[3];
+		float[] frgb = new float[3];
 		
-		HansDieter.S_RGB.fetchSample(rgb, 0);
-		
-		float gray = LightSensorConstants.getGrayscale(rgb);
+		HansDieter.S_RGB.fetchSample(frgb, 0);
+
+		double[] rgb = new double[] { frgb[0], frgb[1], frgb[2] };
+		double gray = LightSensorConstants.getGrayscale(rgb);
 		
 		// 0 -> black
 		// 1 -> white
 		
 		if (gray < L_THRESHOLD)
 		{
-			HansDieter.StopRobot();
+			MotorController.steerLeft(10);
 
 			// looping rotate right
 			// continue forward
 		}
 		else if (gray > U_THRESHOLD)
 		{
-			HansDieter.StopRobot();
+			MotorController.steerLeft(-10);
 
 			// looping rotate left
 			// continue forward

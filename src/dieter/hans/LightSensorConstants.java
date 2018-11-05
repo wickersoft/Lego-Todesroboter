@@ -2,6 +2,8 @@ package dieter.hans;
 
 import java.util.HashMap;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.BlockAction;
+
 public class LightSensorConstants {
 
 	public static final HashMap<Integer, String> colorIds = new HashMap<>();
@@ -12,15 +14,23 @@ public class LightSensorConstants {
 	public static final double[] RED_TAPE = {0.11, 0.02, 0.01};	
 	public static final double[] FUCK_TAPE = {0.02, 0.01, 0.00};
 	
-	public static String getCustomColor(float[] rgb)
+	public static String getCustomColor(double[] rgb)
 	{
 		
 		return "no color";
 	}
 	
-	public static float getGrayscale(float[] color)
+	public static double getShit(double[] color)
 	{
-		float res = 0;
+		double dist_black = getDistance(color, FLOOR);
+		double dist_white = getDistance(color, WHITE_TAPE);
+		
+		return Math.sqrt(dist_white / (dist_black + dist_white));
+	}
+	
+	public static double getGrayscale(double[] color)
+	{
+		double res = 0;
 
 		for (int i = 0; i < 3; ++i)
 			res += color[i];
@@ -28,9 +38,9 @@ public class LightSensorConstants {
 		return res / 3;
 	}
 	
-	public static float getDistance(float[] color_1, float[] color_2)
+	public static double getDistance(double[] color_1, double[] color_2)
 	{
-		float res = 0, tmp = 0;
+		double res = 0, tmp = 0;
 		
 		for (int i = 0; i < 3; ++i)
 		{
@@ -38,7 +48,7 @@ public class LightSensorConstants {
 			res += tmp * tmp;
 		}
 		
-		return (float)Math.sqrt(res);
+		return Math.sqrt(res);
 	}
 	
 	static {

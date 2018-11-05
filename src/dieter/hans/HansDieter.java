@@ -64,30 +64,4 @@ public class HansDieter {
 			};	
 		}
 	}
-	
-	public static void StopRobot()
-	{
-		M_R.stop(true);
-		M_L.stop();
-	}
-
-	public static void Turn(float angle, float speed)
-	{
-		StopRobot();
-		
-		// TODO
-	}
-
-	public static void DriveForward()
-	{
-		DriveForward(Math.max(M_R.getMaxSpeed(), M_L.getMaxSpeed()));
-	}
-	
-	public static void DriveForward(float speed)
-	{
-		M_R.forward();
-		M_L.forward();
-		M_R.setSpeed((int)speed);
-		M_L.setSpeed((int)speed);
-	}
 }
