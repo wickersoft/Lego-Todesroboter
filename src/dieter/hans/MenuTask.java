@@ -1,21 +1,24 @@
 package dieter.hans;
 
+import lejos.hardware.lcd.LCD;
 import lejos.utility.TextMenu;
 
 public class MenuTask extends RobotTask {
-
-	private boolean firstRun = true;
 	
 	@Override
 	public int run() {
-		TextMenu menu = new TextMenu(new String[] {"Brücke", "Labyrinth", "Linie", "Hindernis"}, 0, "Task wählen");
-		TextMenu confirm = new TextMenu(new String[] {"Ja", "Nein"}, 0, "Fo rils?");
+		LCD.clear();
+		TextMenu menu = new TextMenu(new String[] {"Bruecke", "Labyrinth", "Linie", "Hindernis", "Beenden"}, 1, "Task waehlen");
+		int selection = menu.select();
 		
+		LCD.clear();
+		TextMenu confirm = new TextMenu(new String[] {"Ja", "Nein"}, 1, "Fo rils");		
 		if(confirm.select() == 1) {
 			return 0;
 		}
 		
-		switch(menu.select()) {
+		LCD.clear();
+		switch(selection) {
 		case 0:
 			return 1;
 		case 1:
@@ -24,6 +27,8 @@ public class MenuTask extends RobotTask {
 			return 3;
 		case 3:
 			return 4;
+		case 4:
+			return -1;
 		}
 		return 0;
 	}
