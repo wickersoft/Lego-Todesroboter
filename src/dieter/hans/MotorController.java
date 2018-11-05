@@ -48,6 +48,11 @@ public class MotorController {
 		
 	}
 	
+	public static void travelInf() {
+		HansDieter.M_L.forward();
+		HansDieter.M_R.forward();
+	}
+	
 	public static void travelForward(double distance) {
 		pilot.travel(distance);
 	}
