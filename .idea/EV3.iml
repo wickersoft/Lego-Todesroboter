@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="opencv-2411" level="project" />
+    <orderEntry type="library" exported="" name="ev3tools" level="project" />
+    <orderEntry type="library" exported="" name="dbusjava" level="project" />
+    <orderEntry type="library" exported="" name="ev3classes" level="project" />
+    <orderEntry type="library" exported="" name="commons-cli" level="project" />
+    <orderEntry type="library" exported="" name="jcommon" level="project" />
+    <orderEntry type="library" exported="" name="jfreechart" level="project" />
+    <orderEntry type="library" exported="" name="jsch-0.1.50" level="project" />
+  </component>
+</module>

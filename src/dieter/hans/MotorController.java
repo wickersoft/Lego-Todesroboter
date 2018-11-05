@@ -5,49 +5,51 @@ import lejos.robotics.navigation.DifferentialPilot;
 
 public class MotorController {
 	
-	private static DifferentialPilot pilot = new DifferentialPilot(8, 11, Motor.B, Motor.A);
+	private static final DifferentialPilot pilot;
 	
-	public MotorController() {
+	static
+	{
+		pilot = new DifferentialPilot(8, 11, HansDieter.M_L, HansDieter.M_R);
 		setSpeedTravel();
 		pilot.setAcceleration(60);
 	}
 	
-	public void setSpeedTravel() {
+	public static void setSpeedTravel() {
 		pilot.setTravelSpeed(40);
 	}
 	
-	public void setSpeedLine() {
+	public static void setSpeedLine() {
 		pilot.setTravelSpeed(30);
 	}
 	
-	public void setSpeedBridge() {
+	public static void setSpeedBridge() {
 		pilot.setTravelSpeed(20);
 	}
 	
-	public void steerLeft(int angle) {
+	public static void steerLeft(int angle) {
 		pilot.stop();
 		pilot.rotate(angle);
 	}
 	
-	public void steerRight() {
+	public static void steerRight() {
 		pilot.stop();
 		pilot.rotate(-90);
 	}
 	
-	public void steerLeft() {
+	public static void steerLeft() {
 		pilot.stop();
 		pilot.rotate(90);
 	}
 	
-	public void travelForward(double distance) {
+	public static void travelForward(double distance) {
 		pilot.travel(distance);
 	}
 	
-	public boolean isMoving() {
+	public static boolean isMoving() {
 		return pilot.isMoving();
 	}
 	
-	public void stop() {
+	public static void stop() {
 		pilot.stop();
 	}
 	

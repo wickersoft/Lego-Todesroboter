@@ -10,8 +10,8 @@ import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.SensorMode;
 
-public class HansDieter {
 
+public class HansDieter {
 	public static final RegulatedMotor M_R = Motor.A;
 	public static final RegulatedMotor M_L = Motor.B;
 	public static final RegulatedMotor M_ULT = Motor.C;
