@@ -43,6 +43,9 @@ public class MotorController {
 	public static void steer(double value) {
 		HansDieter.M_L.setSpeed((int)(pilot.getTravelSpeed() * (1 - value)));
 		HansDieter.M_R.setSpeed((int)(pilot.getTravelSpeed() * (1 + value)));
+		HansDieter.M_L.forward();
+		HansDieter.M_R.forward();
+		
 	}
 	
 	public static void travelForward(double distance) {
@@ -54,6 +57,8 @@ public class MotorController {
 	}
 	
 	public static void stop() {
+		HansDieter.M_L.stop();
+		HansDieter.M_R.stop();
 		pilot.stop();
 	}
 	
