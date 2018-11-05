@@ -24,7 +24,7 @@ public class MotorController {
 		pilot.setTravelSpeed(20);
 	}
 	
-	public void steer(int angle) {
+	public void steerLeft(int angle) {
 		pilot.stop();
 		pilot.rotate(angle);
 	}
