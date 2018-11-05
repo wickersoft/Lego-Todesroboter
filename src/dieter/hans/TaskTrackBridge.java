@@ -3,8 +3,6 @@ package dieter.hans;
 
 public class TaskTrackBridge extends TrackTask {
 	
-	private MotorController mc = new MotorController();
-	
 	@Override
 	public int runTrack() {
 		init();
@@ -15,35 +13,35 @@ public class TaskTrackBridge extends TrackTask {
 	}
 	
 	private void init() {
-		mc.setSpeedTravel();
+		MotorController.setSpeedTravel();
 		while (checkForColorChange() == 0) {
-			mc.travelForward(2);
+			MotorController.travelForward(2);
 		}
 	}
 	
 	private void start() {
-		mc.setSpeedBridge();
+		MotorController.setSpeedBridge();
 		while (checkForColorChange() == 0) {
-			mc.travelForward(2);
+			MotorController.travelForward(2);
 		}
 		
 	}
 	
 	private void top() {
-		mc.setSpeedTravel();
-		mc.steerLeft(90);
+		MotorController.setSpeedTravel();
+		MotorController.steerLeft(90);
 		int distance = 50;
 		while (distance >= 0 && checkForColorChange() == 0) {
-			mc.travelForward(5);
+			MotorController.travelForward(5);
 			distance -= 5;
 		}
-		mc.steerLeft(90);
+		MotorController.steerLeft(90);
 	}
 	
 	private void down() {
-		mc.setSpeedBridge();
+		MotorController.setSpeedBridge();
 		while (checkForColorChange() == 0) {
-			mc.travelForward(2);
+			MotorController.travelForward(2);
 		}
 	}
 	

@@ -7,13 +7,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.lejos.ev3.ldt.LEJOS_EV3_LIBRARY_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/pc/3rdparty/commons-cli.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/pc/3rdparty/jcommon.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/pc/3rdparty/jfreechart.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/pc/3rdparty/jsch-0.1.50.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/pc/ev3tools.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/ev3/dbusjava.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/ev3/ev3classes.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/leJOS EV3/lib/ev3/3rdparty/opencv-2411.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
