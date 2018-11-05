@@ -10,8 +10,8 @@ import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.SensorMode;
 
-public class HansDieter {
 
+public class HansDieter {
 	public static final RegulatedMotor M_R = Motor.A;
 	public static final RegulatedMotor M_L = Motor.B;
 	public static final RegulatedMotor M_ULT = Motor.C;
@@ -51,5 +51,31 @@ public class HansDieter {
 				return;
 			};	
 		}
+	}
+	
+	public static void StopRobot()
+	{
+		M_R.stop(true);
+		M_L.stop();
+	}
+
+	public static void Turn(float angle, float speed)
+	{
+		StopRobot();
+		
+		// TODO
+	}
+
+	public static void DriveForward()
+	{
+		DriveForward(Math.max(M_R.getMaxSpeed(), M_L.getMaxSpeed()));
+	}
+	
+	public static void DriveForward(float speed)
+	{
+		M_R.forward();
+		M_L.forward();
+		M_R.setSpeed((int)speed);
+		M_L.setSpeed((int)speed);
 	}
 }
