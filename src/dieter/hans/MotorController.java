@@ -75,6 +75,14 @@ public class MotorController {
 	public static void travelForward(double distance) {
 		pilot.travel(distance);
 	}
+	
+	public static void travelBackward(int distance) {
+		HansDieter.M_L.forward();
+		HansDieter.M_R.forward();
+		HansDieter.M_R.rotate(distance);
+		HansDieter.M_L.rotate(distance);
+		pilot.travel(distance);
+	}
 
 	public static boolean isMoving() {
 		return pilot.isMoving();
