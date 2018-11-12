@@ -37,14 +37,17 @@ public class MotorController {
 		pilot.rotate(angle);
 	}
 
-	public static void steerRight() {
-		pilot.stop();
-		pilot.rotate(-90);
-	}
-
 	public static void steerLeft() {
+		steerLeft(90);
+	}
+	
+	public static void steerRight(int angle) {
 		pilot.stop();
-		pilot.rotate(90);
+		pilot.rotate(-angle);
+	}
+	
+	public static void steerRight() {
+		steerRight(90);
 	}
 
 	public static void steer(double value) {
