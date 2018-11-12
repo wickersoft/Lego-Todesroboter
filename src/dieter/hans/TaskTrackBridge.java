@@ -13,14 +13,13 @@ public class TaskTrackBridge extends TrackTask {
 	}
 	
 	private void init() {
-		MotorController.setSpeedTravel();
+		
 		while (checkForColorChange() == 0) {
 			MotorController.travelForward(2);
 		}
 	}
 	
 	private void start() {
-		MotorController.setSpeedBridge();
 		while (checkForColorChange() == 0) {
 			MotorController.travelForward(2);
 		}
@@ -28,7 +27,6 @@ public class TaskTrackBridge extends TrackTask {
 	}
 	
 	private void top() {
-		MotorController.setSpeedTravel();
 		MotorController.steerLeft(90);
 		int distance = 50;
 		while (distance >= 0 && checkForColorChange() == 0) {
@@ -39,7 +37,6 @@ public class TaskTrackBridge extends TrackTask {
 	}
 	
 	private void down() {
-		MotorController.setSpeedBridge();
 		while (checkForColorChange() == 0) {
 			MotorController.travelForward(2);
 		}

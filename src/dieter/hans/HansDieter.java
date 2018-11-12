@@ -24,6 +24,7 @@ public class HansDieter {
 	public static final EV3GyroSensor S_GYR = new EV3GyroSensor(SensorPort.S4);
 	public static final SensorMode S_RGB = S_LIT.getRGBMode();
 	public static final SampleProvider S_DST = S_ULT.getDistanceMode();
+	public static final SensorMode S_TCH = S_BTN.getTouchMode();
 	//public static final SensorMode S_COL = S_LIT.getColorIDMode();
 
 	

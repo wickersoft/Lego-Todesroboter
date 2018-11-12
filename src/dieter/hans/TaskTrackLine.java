@@ -23,7 +23,7 @@ public class TaskTrackLine extends TrackTask {
 			System.out.printf("%.2f\n", MotorController.getSpeed());
 			
 			
-			MotorController.setSpeed((int) (100 * (1 - 0.75 * anxiety)));
+			//MotorController.setSpeed((int) (100 * (1 - 0.5 * anxiety)));
 			MotorController.steer(steer);
 			
 			Thread.sleep(10);

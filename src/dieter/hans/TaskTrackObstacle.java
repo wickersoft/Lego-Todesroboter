@@ -7,21 +7,48 @@ public class TaskTrackObstacle extends TrackTask {
 	
 	@Override
 	public int runTrack() {
-		MotorController.steerLeft(10);
+		HansDieter.M_L.resetTachoCount();
+		MotorController.setSpeed(20);
 		MotorController.travelInf();
-		do {
+    	
+		while(true) {
 			HansDieter.S_DST.fetchSample(distance, 0);
-		} while (distance[0] > 0.2);
+			if(distance[0] < 0.15) {
+				int tacho = HansDieter.M_L.getTachoCount();
+				
+				if(tacho < -400) {
+					MotorController.stop();
+					r(45);
+					f(-15);
+					l(45);
+					f(-40);
+					r(130);
+					f(100);
+					break;
+				}
+				
+			}
+			
+			
+		}
+		
 		//MotorController.steerRight(100);
 		//MotorController.travelForward(60);
 		//MotorController.steerLeft(20);
 		//MotorController.travelForward(20);
-		MotorController.steerRight(40);
-		MotorController.travelForward(60);
-		MotorController.steerLeft(70);
-		MotorController.travelForward(30);
 		return 0;
 	}
+	
+	private final void r(int angle) {
+		MotorController.steerRight(angle);
+	}
 
+	private final void l(int angle) {
+		MotorController.steerLeft(angle);
+	}
+
+	private final void f(double distance) {
+		MotorController.travelForward(distance);
+	}
 
 }
