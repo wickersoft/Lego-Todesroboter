@@ -11,8 +11,9 @@ public class TaskTrackObstacle extends TrackTask {
 		MotorController.travelInf();
 		do {
 			HansDieter.S_DST.fetchSample(distance, 0);
-		} while (distance[0] > 10);
-		MotorController.steerRight(120);
+		} while (distance[0] > 0.2);
+		MotorController.steerRight(100);
+		MotorController.travelForward(-120);
 		return 0;
 	}
 

@@ -1,4 +1,6 @@
-.classpath/
+.project
+.classpath
+.checkstyle
 .metadata/
 .settings/
 .idea/
