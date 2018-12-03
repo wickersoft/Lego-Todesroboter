@@ -8,8 +8,7 @@ public class TaskTrackObstacle extends TrackTask {
 	@Override
 	public int runTrack() {
 		HansDieter.M_L.resetTachoCount();
-		MotorController.setSpeed(20);
-		MotorController.travelInf();
+		MotorController.setSpeed(0.5);
     	
 		while(true) {
 			HansDieter.S_DST.fetchSample(distance, 0);
@@ -48,7 +47,7 @@ public class TaskTrackObstacle extends TrackTask {
 	}
 
 	private final void f(double distance) {
-		MotorController.travelForward(distance);
+		MotorController.travelForward((int) distance);
 	}
 
 }

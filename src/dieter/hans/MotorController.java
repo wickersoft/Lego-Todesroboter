@@ -1,86 +1,85 @@
 package dieter.hans;
 
-import lejos.robotics.navigation.DifferentialPilot;
-
 public class MotorController {
 
-	private static final DifferentialPilot pilot;
-	private static int speed = 60;
+	private static final int max_speed = 680;
+	private static int linearSpeed = 0;
+	private static int turnSpeed = 0;
+	private static int leftSpeed = 0;
+	private static int rightSpeed = 0;
 
-	static {
-		pilot = new DifferentialPilot(8, 11, HansDieter.M_L, HansDieter.M_R);
-		pilot.setAcceleration(100);
-	}
-
-	public static void setSpeed(int s) {
-		speed = s;
-		pilot.setTravelSpeed(s);
-	}
-	
-	public static double getSpeed() {
-		return speed;
-	}
-
-	public static void steerLeft(int angle) {
-		pilot.stop();
-		pilot.rotate(angle);
-	}
-
-	public static void steerLeft() {
-		steerLeft(90);
-	}
-	
-	public static void steerRight(int angle) {
-		pilot.stop();
-		pilot.rotate(-angle);
-	}
-	
-	public static void steerRight() {
-		steerRight(90);
-	}
-
-	public static void steer(double value) {
-		int leftSpeed = (int) (speed * (0.5 + value));
-		int rightSpeed = (int) (speed * (0.5 - value));
-		HansDieter.M_L.setSpeed( Math.abs(leftSpeed));
-		HansDieter.M_R.setSpeed( Math.abs(rightSpeed));
-		if (leftSpeed < 0) {
+	public static void setMotorSpeeds() {
+		leftSpeed = linearSpeed - turnSpeed;
+		rightSpeed = linearSpeed + turnSpeed;
+		if (leftSpeed >= 0) {
+			HansDieter.M_L.setSpeed(leftSpeed);
 			HansDieter.M_L.backward();
 		} else {
+			HansDieter.M_L.setSpeed(-leftSpeed);
 			HansDieter.M_L.forward();
 		}
-		if (rightSpeed < 0) {
+		if (rightSpeed >= 0) {
+			HansDieter.M_R.setSpeed(rightSpeed);
 			HansDieter.M_R.backward();
 		} else {
+			HansDieter.M_R.setSpeed(-rightSpeed);
 			HansDieter.M_R.forward();
 		}
 	}
 
-	public static void travelInf() {
-		HansDieter.M_L.backward();
-		HansDieter.M_R.backward();
+	public static void setSpeed(double s) {
+		linearSpeed = (int) (s * max_speed);
+		setMotorSpeeds();
 	}
 
-	public static void travelForward(double distance) {
-		pilot.travel(distance);
+	public static void setTurnSpeed(double s) {
+		turnSpeed = (int) (s * max_speed);
+		setMotorSpeeds();
 	}
-	
+
+	public static void steerLeft(int angle) {
+		stop();
+		HansDieter.M_L.setSpeed(360);
+		HansDieter.M_R.setSpeed(360);
+		HansDieter.M_L.rotate(angle, true);
+		HansDieter.M_R.rotate(-angle, true);
+		try {
+			Thread.sleep(1250);
+		} catch (Exception ex) {
+		}
+	}
+
+	public static void steerLeft() {
+		steerLeft(400);
+	}
+
+	public static void steerRight(int angle) {
+		steerLeft(-angle);
+	}
+
+	public static void steerRight() {
+		steerRight(400);
+	}
+
+	public static void travelForward(int distance) {
+		stop();
+		HansDieter.M_L.setSpeed(linearSpeed);
+		HansDieter.M_R.setSpeed(linearSpeed);
+		HansDieter.M_L.rotate(distance, true);
+		HansDieter.M_R.rotate(distance, true);
+		try {
+			Thread.sleep(1250);
+		} catch (Exception ex) {
+		}
+		setMotorSpeeds();
+	}
+
 	public static void travelBackward(int distance) {
-		HansDieter.M_L.forward();
-		HansDieter.M_R.forward();
-		HansDieter.M_R.rotate(distance);
-		HansDieter.M_L.rotate(distance);
-		pilot.travel(distance);
-	}
-
-	public static boolean isMoving() {
-		return pilot.isMoving();
+		travelForward(-distance);
 	}
 
 	public static void stop() {
 		HansDieter.M_L.stop();
 		HansDieter.M_R.stop();
-		pilot.stop();
 	}
-
 }

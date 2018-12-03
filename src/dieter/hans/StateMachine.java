@@ -26,7 +26,11 @@ public class StateMachine {
 	}
 	
 	public int tick() {
-		currentTask = currentTask.runAndGetNext();
+		RobotTask newTask = currentTask.runAndGetNext();
+		if(newTask != currentTask && newTask != null) {
+			newTask.enter();
+		}
+		currentTask = newTask;
 		if(currentTask == null) {
 			return -1;
 		}

@@ -3,56 +3,45 @@ package dieter.hans;
 
 public class TaskTrackBridge extends TrackTask {
 	
+	float[] ultValue = new float[3];
+	PID pid = new PID(-1, 0, 0);
+	double anxiety = 1;
+	
+	public void enter() {
+		HansDieter.M_ULT.rotateTo(-70);
+	}
+	
 	@Override
 	public int runTrack() {
-		init();
-		start();
-		top();
-		down();
-		return 3;
-	}
-	
-	private void init() {
+		MotorController.setSpeed(1 - 0.5 * anxiety);
+		HansDieter.S_DST.fetchSample(ultValue, 0);
+		System.out.println(ultValue[0]);
+		if(ultValue[0] > 0.08) {
+			ultValue[0] = -1;
+		} else {
+			ultValue[0] = 1;
+		}
+		double steer = pid.tick(ultValue[0]);
 		
-		while (checkForColorChange() == 0) {
-			MotorController.travelForward(2);
-		}
-	}
-	
-	private void start() {
-		while (checkForColorChange() == 0) {
-			MotorController.travelForward(2);
-		}
 		
-	}
-	
-	private void top() {
-		MotorController.steerLeft(90);
-		int distance = 50;
-		while (distance >= 0 && checkForColorChange() == 0) {
-			MotorController.travelForward(5);
-			distance -= 5;
+		
+		MotorController.setTurnSpeed(steer);
+		
+		if (Math.abs(steer) > anxiety) {
+			anxiety = Math.abs(steer);
+		} else {
+			anxiety *= 0.98;
 		}
-		MotorController.steerLeft(90);
-	}
+		MotorController.setTurnSpeed(0.3 * steer);
+		sleep(10);
+		return 0;
+	}	
 	
-	private void down() {
-		while (checkForColorChange() == 0) {
-			MotorController.travelForward(2);
-		}
-	}
-	
-	private int checkForColorChange() {
-		while (true) {
-			float[] rgbValues = new float[3];
-			HansDieter.S_RGB.fetchSample(rgbValues, 0);
-			if (rgbValues[0] == 0.02 && rgbValues[1] == 0.02 && rgbValues[2] == 0.01) {
-				return 1;
-			} else {
-				return 0;
-			}
+	private void sleep(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (Exception ex) {
 		}
 	}
-	
 
 }

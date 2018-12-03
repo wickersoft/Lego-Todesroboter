@@ -10,6 +10,9 @@ public abstract class RobotTask {
 		transitions.put(returnCode, neighbor);
 	}
 
+	public void enter() {
+	}
+	
 	public abstract int run();
 	
 	public RobotTask runAndGetNext() {
