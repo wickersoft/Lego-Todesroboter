@@ -38,8 +38,7 @@ public class HansDieter {
 		sm.init();
 		while(sm.tick() == 0) {
 		}
-	}
-	
+	}	
 	
 	
 	

@@ -3,16 +3,29 @@ package dieter.hans;
 
 public class TaskTrackBridge extends TrackTask {
 	
+	float[] touchValue = new float[1];
 	float[] ultValue = new float[3];
 	PID pid = new PID(-1, 0, 0);
 	double anxiety = 1;
 	
 	public void enter() {
-		HansDieter.M_ULT.rotateTo(-70);
+		HansDieter.M_ULT.rotateTo(0);
 	}
 	
 	@Override
 	public int runTrack() {
+		HansDieter.S_TCH.fetchSample(touchValue, 0);
+		if (touchValue[0] == 1.0) {
+			MotorController.setSpeed(-0.3);
+			sleep(1500);
+			MotorController.setSpeed(0);
+			MotorController.setTurnSpeed(0.3);
+			sleep(1000);
+			MotorController.setTurnSpeed(0);
+			MotorController.setSpeed(0.5);
+		}
+		
+		
 		MotorController.setSpeed(1 - 0.5 * anxiety);
 		HansDieter.S_DST.fetchSample(ultValue, 0);
 		System.out.println(ultValue[0]);
@@ -23,16 +36,13 @@ public class TaskTrackBridge extends TrackTask {
 		}
 		double steer = pid.tick(ultValue[0]);
 		
-		
-		
-		MotorController.setTurnSpeed(steer);
-		
+				
 		if (Math.abs(steer) > anxiety) {
 			anxiety = Math.abs(steer);
 		} else {
 			anxiety *= 0.98;
 		}
-		MotorController.setTurnSpeed(0.3 * steer);
+		MotorController.setTurnSpeed(-0.3 * steer);
 		sleep(10);
 		return 0;
 	}	
