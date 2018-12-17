@@ -13,6 +13,9 @@ public class PID {
 	}
 	
 	public double tick(double input) {
+		integral += input;
+		if(integral > 1) integral = 1;
+		if(integral < -1) integral = -1;
 		double output = kp * input + ki * integral + kd * (input - last);
 		last = input;
 		return output;

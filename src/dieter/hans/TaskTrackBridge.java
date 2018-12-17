@@ -5,11 +5,15 @@ public class TaskTrackBridge extends TrackTask {
 	
 	float[] touchValue = new float[1];
 	float[] ultValue = new float[3];
+	float[] gyrValue = new float[3];
 	PID pid = new PID(-1, 0, 0);
 	double anxiety = 1;
+	double zeroAngle = 0;
 	
 	public void enter() {
-		HansDieter.M_ULT.rotateTo(70);
+		HansDieter.M_ULT.rotateTo(85);
+		//HansDieter.S_ANG.fetchSample(gyrValue, 0);
+		//zeroAngle = gyrValue[0];
 	}
 	
 	@Override
@@ -26,15 +30,27 @@ public class TaskTrackBridge extends TrackTask {
 		}
 		
 		
-		MotorController.setSpeed(1 - 0.5 * anxiety);
+//		MotorController.setSpeed(0.6);
 		HansDieter.S_DST.fetchSample(ultValue, 0);
-		HansDieter.S_TCH.fetchSample(touchValue, 0);
-		System.out.println(ultValue[0]);
-		if(ultValue[0] > 0.08) {
+		HansDieter.S_ANG.fetchSample(gyrValue, 0);
+
+		System.out.println("");
+		System.out.println(gyrValue[0] );
+		
+		
+		if(ultValue[0] > 0.1) {
+			MotorController.setSpeed(0.2);
+			MotorController.setTurnSpeed(-0.5);
+			
 			ultValue[0] = -1;
 		} else {
+			MotorController.setSpeed(0.6);
+			MotorController.setTurnSpeed(0.3);
 			ultValue[0] = 1;
 		}
+		
+		
+		
 		double steer = pid.tick(ultValue[0]);
 		
 		if (touchValue[0] == 1.0) {
@@ -50,12 +66,12 @@ public class TaskTrackBridge extends TrackTask {
 			
 			MotorController.steerLeft(200);
 			MotorController.setTurnSpeed(0);
-			MotorController.setSpeed(0.8);
+			MotorController.setSpeed(0.6);
 			sleep(500);
 			
 		}
 		
-		MotorController.setTurnSpeed(steer);
+		
 		
 
 		if (Math.abs(steer) > anxiety) {
@@ -63,7 +79,7 @@ public class TaskTrackBridge extends TrackTask {
 		} else {
 			anxiety *= 0.98;
 		}
-		MotorController.setTurnSpeed(-0.3 * steer);
+		//MotorController.setTurnSpeed(-0.5 * steer);
 		sleep(10);
 		return 0;
 		
