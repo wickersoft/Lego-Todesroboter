@@ -45,23 +45,19 @@ public class TaskTrackLine extends TrackTask {
 				MotorController.setSpeed(0);
 
 				MotorController.steerRight(400);
-				
 				MotorController.setTurnSpeed(0);
 				MotorController.setSpeed(0.8);
-				sleep(1400);
-				
-				MotorController.steerLeft(200);
-				
-				MotorController.setTurnSpeed(0);
-				MotorController.setSpeed(0.8);
-				sleep(2000);
-
-				MotorController.steerLeft(300);
-				MotorController.setTurnSpeed(0);
-				MotorController.setSpeed(0.5);
 				sleep(1000);
 				
-				MotorController.steerRight();
+				MotorController.steerLeft(200);
+				MotorController.setTurnSpeed(0);
+				MotorController.setSpeed(0.8);
+				sleep(2300);
+
+				MotorController.steerLeft(400);
+				MotorController.setTurnSpeed(0);
+				MotorController.setSpeed(0.5);
+				sleep(2500);
 
 				return 0;
 			}
