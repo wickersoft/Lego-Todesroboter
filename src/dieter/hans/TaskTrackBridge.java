@@ -78,13 +78,5 @@ public class TaskTrackBridge extends TrackTask {
 		
 		
 	}	
-	
-	
-	private void sleep(int millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (Exception ex) {
-		}
-	}
 
 }

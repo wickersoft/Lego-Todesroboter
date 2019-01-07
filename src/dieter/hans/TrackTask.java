@@ -14,4 +14,10 @@ public abstract class TrackTask extends RobotTask {
 	
 	public abstract int runTrack();
 
+	public void sleep(int millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (Exception ex) {
+		}
+	}
 }

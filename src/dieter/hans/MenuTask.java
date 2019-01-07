@@ -10,6 +10,7 @@ public class MenuTask extends RobotTask {
 	public int run() {
 		LCD.clear();
 		TextMenu menu = new TextMenu(new String[] {"Bruecke", "Labyrinth", "Linie", "Hindernis", "Kanone", "Beenden"}, 1, "Task waehlen");
+		HansDieter.M_ULT.rotateTo(0);
 		int selection = menu.select();
 		
 		LCD.clear();

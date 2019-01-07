@@ -28,12 +28,12 @@ public class TaskTrackLine extends TrackTask {
 
 			if (light < -0.9) {
 				if (!honestSuchViech()) {
-					if (++gapNumber >= 6) {
+					if (++gapNumber >= 5) {
 						return -1;
 					} else {
 						MotorController.setTurnSpeed(0);
 						MotorController.setSpeed(0.8);
-						sleep(3000);
+						sleep(3250);
 					}
 				}
 			}
@@ -116,12 +116,6 @@ public class TaskTrackLine extends TrackTask {
 		return false;
 	}
 
-	private void sleep(int millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (Exception ex) {
-		}
-	}
 
 	private int tc() {
 		return HansDieter.M_L.getTachoCount() - tcReference;
