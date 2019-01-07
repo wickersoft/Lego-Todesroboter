@@ -2,7 +2,13 @@ package dieter.hans;
 
 public class TaskTrackObstacle extends TrackTask {
 
-	private float[] distance = new float[1];
+	float[] ultValue = new float[3];
+	PID pid = new PID(-1, 0, 0);
+	
+	public void enter() {
+		HansDieter.M_ULT.rotateTo(0);
+		MotorController.steerRight(800);
+	}
 	
 	
 	@Override
@@ -10,31 +16,31 @@ public class TaskTrackObstacle extends TrackTask {
 		HansDieter.M_L.resetTachoCount();
 		MotorController.setSpeed(0.5);
     	
-		while(true) {
-			HansDieter.S_DST.fetchSample(distance, 0);
-			if(distance[0] < 0.15) {
-				int tacho = HansDieter.M_L.getTachoCount();
-				
-				if(tacho < -400) {
-					MotorController.stop();
-					r(45);
-					f(-15);
-					l(45);
-					f(-40);
-					r(130);
-					f(100);
-					break;
-				}
-				
-			}
+		//while(true) {
 			
 			
-		}
-		
+//			HansDieter.S_DST.fetchSample(distance, 0);
+//			if(distance[0] < 0.15) {
+//				int tacho = HansDieter.M_L.getTachoCount();
+//				
+//				if(tacho < -400) {
+//					MotorController.stop();
+//					r(45);
+//					f(-15);
+//					l(45);
+//					f(-40);
+//					r(130);
+//					f(100);
+//					break;
+//				}
+//				
+//			}
+			
+		//}
 		//MotorController.steerRight(100);
 		//MotorController.travelForward(60);
 		//MotorController.steerLeft(20);
-		//MotorController.travelForward(20);
+		//MotorController.travelForward(20); 
 		return 0;
 	}
 	

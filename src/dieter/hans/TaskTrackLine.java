@@ -28,12 +28,12 @@ public class TaskTrackLine extends TrackTask {
 
 			if (light < -0.9) {
 				if (!honestSuchViech()) {
-					if (++gapNumber >= 3) {
+					if (++gapNumber >= 6) {
 						return -1;
 					} else {
 						MotorController.setTurnSpeed(0);
 						MotorController.setSpeed(0.8);
-						sleep(1750);
+						sleep(3000);
 					}
 				}
 			}
@@ -54,10 +54,10 @@ public class TaskTrackLine extends TrackTask {
 				MotorController.setSpeed(0.8);
 				sleep(2300);
 
-				MotorController.steerLeft(400);
+				MotorController.steerLeft(500);
 				MotorController.setTurnSpeed(0);
 				MotorController.setSpeed(0.5);
-				sleep(2500);
+				sleep(3000);
 
 				return 0;
 			}
@@ -108,7 +108,7 @@ public class TaskTrackLine extends TrackTask {
 			HansDieter.S_RGB.fetchSample(lightValue, 0);
 			double light = LightSensorConstants.getShit(lightValue);
 			try {
-				Thread.sleep(25);
+				Thread.sleep(26);
 			} catch (Exception ex) {
 			}
 		}
