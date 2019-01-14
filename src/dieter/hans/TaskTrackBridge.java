@@ -56,7 +56,7 @@ public class TaskTrackBridge extends TrackTask {
 			HansDieter.M_ULT.rotateTo(0);
 			MotorController.setTurnSpeed(0);
 			MotorController.setSpeed(-0.5);
-			sleep(600);
+			sleep(700);
 			MotorController.setSpeed(0);
 			
 			MotorController.steerRight(100);

@@ -1,11 +1,13 @@
 package dieter.hans;
 
+import lejos.hardware.lcd.LCD;
 
 public class TaskTrackLine extends TrackTask {
 	private final PID pid = new PID(-1, 0, 0);
 	float[] lightValue = new float[3];
 	float[] touchValue = new float[1];
 	private int gapNumber = 0;
+	private boolean boxFound = false;
 
 	int tcReference = Integer.MAX_VALUE;
 
@@ -27,10 +29,14 @@ public class TaskTrackLine extends TrackTask {
 			double steer = pid.tick(light);
 
 			if (light < -0.9) {
+				MotorController.setTurnSpeed(0);
+				MotorController.setSpeed(0.8);
+				sleep(250);
 				if (!honestSuchViech()) {
-					if (++gapNumber >= 5) {
+					if (boxFound) {
 						return -1;
 					} else {
+						LCD.drawInt(gapNumber, 0, 0);
 						MotorController.setTurnSpeed(0);
 						MotorController.setSpeed(0.8);
 						sleep(3250);
@@ -58,7 +64,7 @@ public class TaskTrackLine extends TrackTask {
 				MotorController.setTurnSpeed(0);
 				MotorController.setSpeed(0.5);
 				sleep(3000);
-
+				boxFound = true;
 				return 0;
 			}
 			
@@ -85,7 +91,7 @@ public class TaskTrackLine extends TrackTask {
 				return true;
 			}
 			try {
-				Thread.sleep(25);
+				Thread.sleep(23);
 			} catch (Exception ex) {
 			}
 		}
@@ -98,7 +104,7 @@ public class TaskTrackLine extends TrackTask {
 				return true;
 			}
 			try {
-				Thread.sleep(25);
+				Thread.sleep(23);
 			} catch (Exception ex) {
 			}
 		}

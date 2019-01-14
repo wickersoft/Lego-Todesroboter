@@ -7,10 +7,13 @@ public class TaskTrackObstacle extends TrackTask {
 	float[] ultValue = new float[3];
 	PID pid = new PID(-1, 0, 0);
 	boolean box_found = false;
+	boolean suck = false;
+	float[] distance = new float[500];
+	int index = 0;
 	public void enter() {
 		MotorController.steerLeft();
 		MotorController.steerLeft();
-		MotorController.travelForward(2000);
+		MotorController.steerLeft(200);
 		HansDieter.M_ULT.rotateTo(20);
 	}
 	
@@ -20,62 +23,46 @@ public class TaskTrackObstacle extends TrackTask {
 		HansDieter.S_DST.fetchSample(ultValue, 0);
 		LCD.drawString("" + ultValue[0], 0, 0);
 		
-		if(ultValue[0] > 0.1 && !box_found) {
+		
+		if(ultValue[0] > 0.2 && !box_found && !suck) {
 			MotorController.setSpeed(-0.3);
 			MotorController.setTurnSpeed(0);
-			sleep(100);
+			sleep(20);
 			return 0;
-		} else if (ultValue[0] < 0.05 && !box_found) {
+		} else if (ultValue[0] < 0.2 && !box_found && !suck) {
+			suck = true;
+			LCD.drawString("suck: " + suck, 0, 0);
+			distance[index] = ultValue[0];
+			index++;
+			MotorController.stop();
+			return 0;
+		} else if (ultValue[0] < 0.2 && !box_found && suck) {
 			box_found = true;
+			LCD.drawString("box found:" + box_found, 0, 0);
 			MotorController.stop();
 			return 0;
 		}
 		
-		if (box_found) {
-			MotorController.travelForward(1000);
-			MotorController.steerRight();
-			MotorController.steerRight(200);
-			MotorController.setSpeed(-0.8);
-			sleep(5000);
-			return -1;
+		
+		
+		if (box_found && suck && index >= 5) {
+			double average = 0;
+			for (int j = 0; j <= 5; j++) {
+				average += distance[index - j];
+			}
+			average /= 5;
+			LCD.clear();
+			LCD.drawString("Average: " + average, 0, 0);
+			if (average < 0.2) {
+				MotorController.travelForward(2000);
+				MotorController.steerRight();
+				MotorController.steerRight(200);
+				MotorController.setSpeed(-0.8);
+				sleep(4000);
+				return -1;
+			}
 		}
-		
-//		else { 
-//			MotorController.setSpeed(-0.8);
-//			sleep(1000);
-//			MotorController.stop();
-//			MotorController.setSpeed(0);
-//			MotorController.setTurnSpeed(0.5);
-//			sleep(30);
-//			MotorController.stop();
-//			
-//		}
-		
-		//while(true) {
-//		HansDieter.M_L.resetTachoCount();
-			
-//			HansDieter.S_DST.fetchSample(distance, 0);
-//			if(distance[0] < 0.15) {
-//				int tacho = HansDieter.M_L.getTachoCount();
-//				
-//				if(tacho < -400) {
-//					MotorController.stop();
-//					r(45);
-//					f(-15);
-//					l(45);
-//					f(-40);
-//					r(130);
-//					f(100);
-//					break;
-//				}
-//				
-//			}
-			
-		//}
-		//MotorController.steerRight(100);
-		//MotorController.travelForward(60);
-		//MotorController.steerLeft(20);
-		//MotorController.travelForward(20); 
+		 
 		return 0;
 	}
 	
