@@ -6,15 +6,19 @@ public class TaskTrackObstacle extends TrackTask {
 
 	float[] ultValue = new float[3];
 	PID pid = new PID(-1, 0, 0);
+	boolean bridge = true;
 	boolean box_found = false;
 	boolean suck = false;
+	boolean far = false;
 	float[] distance = new float[500];
 	int index = 0;
 	public void enter() {
 		MotorController.steerLeft();
 		MotorController.steerLeft();
+		HansDieter.M_ULT.rotateTo(18);
+		HansDieter.M_ULT.stop();
 		MotorController.steerLeft(200);
-		HansDieter.M_ULT.rotateTo(20);
+		MotorController.travelForward1(500, -0.3);
 	}
 	
 	
@@ -23,46 +27,74 @@ public class TaskTrackObstacle extends TrackTask {
 		HansDieter.S_DST.fetchSample(ultValue, 0);
 		LCD.drawString("" + ultValue[0], 0, 0);
 		
-		
-		if(ultValue[0] > 0.2 && !box_found && !suck) {
-			MotorController.setSpeed(-0.3);
+		while (bridge) {
+			if (ultValue[0] > 0.6) {
+				bridge = false;
+				System.out.println("Brücke vorbei");
+			}
 			MotorController.setTurnSpeed(0);
-			sleep(20);
+			MotorController.travelForward1(10, -0.3);
 			return 0;
-		} else if (ultValue[0] < 0.2 && !box_found && !suck) {
+			
+		}
+		
+		if(ultValue[0] > 0.27 && !box_found && !suck && !bridge) {
+			MotorController.setTurnSpeed(0);
+			MotorController.travelForward1(10, -0.3);
+			return 0;
+		} else if (ultValue[0] <= 0.15 && !box_found && !suck && !bridge) {
 			suck = true;
 			LCD.drawString("suck: " + suck, 0, 0);
-			distance[index] = ultValue[0];
-			index++;
-			MotorController.stop();
+			sleep(100);
 			return 0;
-		} else if (ultValue[0] < 0.2 && !box_found && suck) {
+		} else if (ultValue[0] <= 0.15 && !box_found && suck && !bridge) {
 			box_found = true;
 			LCD.drawString("box found:" + box_found, 0, 0);
-			MotorController.stop();
+			sleep(100);
+			return 0;
+		} else if (ultValue[0] < 0.27 && ultValue[0] > 0.15 && !box_found && !suck && !bridge) {
+			suck = true;
+			sleep(100);
+			return 0;
+		} else if (ultValue[0] < 0.27 && ultValue[0] > 0.15 && !box_found && suck && !bridge) {
+			box_found = true;
+			far = true;
+			sleep(100);
 			return 0;
 		}
 		
 		
 		
-		if (box_found && suck && index >= 5) {
-			double average = 0;
-			for (int j = 0; j <= 5; j++) {
-				average += distance[index - j];
-			}
-			average /= 5;
-			LCD.clear();
-			LCD.drawString("Average: " + average, 0, 0);
-			if (average < 0.2) {
-				MotorController.travelForward(2000);
+		if (box_found && suck /*&& index >= 5*/) {
+			System.out.println("Box schieben");
+
+			if (!far) {
+				MotorController.travelForward1(2500, -0.3);
+				MotorController.steerRight();
+				MotorController.steerRight(230);
+				MotorController.travelForward1(2000, -0.8);
+				MotorController.steerRight(100);
+				MotorController.travelForward1(4000, -0.8);
+				suck = false;
+				box_found = false;
+				bridge = true;
+				far = false;
+				return -1;
+			} else {
+				MotorController.travelForward1(2500, -0.3);
 				MotorController.steerRight();
 				MotorController.steerRight(200);
-				MotorController.setSpeed(-0.8);
-				sleep(4000);
+				MotorController.travelForward1(2000, -1);
+				MotorController.steerRight(100);
+				MotorController.travelForward1(50, -1);
+				MotorController.travelForward1(4000, -1);
+				suck = false;
+				box_found = false;
+				bridge = true;
+				far = false;
 				return -1;
 			}
-		}
-		 
+		} 
 		return 0;
 	}
 	

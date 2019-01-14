@@ -38,7 +38,6 @@ public class MotorController {
 	}
 
 	public static void steerLeft(int angle) {
-		stop();
 		HansDieter.M_L.setSpeed(360);
 		HansDieter.M_R.setSpeed(360);
 		HansDieter.M_L.rotate(angle, true);
@@ -60,6 +59,20 @@ public class MotorController {
 	public static void steerRight() {
 		steerRight(400);
 	}
+	
+	public static void travelForward1(int distance){
+        travelForward1(distance, 0.9);
+    }
+
+	public static void travelForward1(int distance, double speed){
+		setTurnSpeed(0);
+		setSpeed(speed);
+		try {
+			Thread.sleep(distance);
+		} catch (InterruptedException ex) {
+		}
+	}
+
 
 	public static void travelForward(int distance) {
 		stop();
