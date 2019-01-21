@@ -4,7 +4,7 @@ import lejos.hardware.lcd.LCD;
 
 public class TaskTrackBridge extends TrackTask {
 	
-	float[] touchValue = new float[1];
+	float[] touchValue = new float[2];
 	float[] ultValue = new float[3];
 	float[] gyrValue = new float[3];
 	PID pid = new PID(-1, 0, 0);
@@ -23,6 +23,7 @@ public class TaskTrackBridge extends TrackTask {
 	@Override
 	public int runTrack() {
 		HansDieter.S_TCH.fetchSample(touchValue, 0);
+		HansDieter.S_TCH2.fetchSample(touchValue, 1);
 		
 		
 //		MotorController.setSpeed(0.6);
@@ -53,7 +54,7 @@ public class TaskTrackBridge extends TrackTask {
 		
 		double steer = pid.tick(ultValue[0]);
 		
-		if (touchValue[0] == 1.0) {
+		if (touchValue[0] == 1.0 || touchValue[1] == 1.0) {
 			HansDieter.M_ULT.rotateTo(0);
 			MotorController.setTurnSpeed(0);
 			MotorController.setSpeed(-0.5);

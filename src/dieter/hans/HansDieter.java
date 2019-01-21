@@ -1,5 +1,7 @@
 package dieter.hans;
 
+import java.util.Random;
+
 import lejos.hardware.Button;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.port.SensorPort;
@@ -22,14 +24,18 @@ public class HansDieter {
 	public static final EV3TouchSensor S_BTN = new EV3TouchSensor(SensorPort.S2);
 	private static final EV3ColorSensor S_LIT = new EV3ColorSensor(SensorPort.S1);
 	public static final EV3UltrasonicSensor S_ULT = new EV3UltrasonicSensor(SensorPort.S3);
-	public static final EV3GyroSensor S_GYR = new EV3GyroSensor(SensorPort.S4);
+	//public static final EV3GyroSensor S_GYR = new EV3GyroSensor(SensorPort.S4);
+	public static final EV3TouchSensor S_BTN2 = new EV3TouchSensor(SensorPort.S4);
 	
 	public static final SensorMode S_RGB = S_LIT.getRGBMode();
 	public static final SampleProvider S_DST = S_ULT.getDistanceMode();
 	public static final SensorMode S_TCH = S_BTN.getTouchMode();
-	public static final SampleProvider S_ANG = S_GYR.getAngleMode();
+	//public static final SampleProvider S_ANG = S_GYR.getAngleMode();
 	//public static final SensorMode S_COL = S_LIT.getColorIDMode();
-
+	public static final SensorMode S_TCH2 = S_BTN2.getTouchMode();
+	
+	public static final Random RND = new Random();
+	
 	
 	public static final int LIN_SPD = 25;
 	public static final int TURN_PROP = 1;

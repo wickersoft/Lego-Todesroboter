@@ -17,6 +17,7 @@ public class TaskTrackLine extends TrackTask {
 	public void enter() {
 		gapNumber = 0;
 		tcr();
+		boxFound = false;
 	}
 
 	@Override
@@ -35,18 +36,12 @@ public class TaskTrackLine extends TrackTask {
 				sleep(250);
 				if (!honestSuchViech()) {
 					if (boxFound) {
-						// blaues tape
-						/*if () {*/
-							HansDieter.S_DST.fetchSample(ultValue, 0);
-							LCD.drawString("" + ultValue[0], 0, 0);
-						/*} else {
-							return 2;
-						}*/
+						return -1;
 					} else {
 						LCD.drawInt(gapNumber, 0, 0);
 						MotorController.setTurnSpeed(0);
 						MotorController.setSpeed(0.8);
-						sleep(3250);
+						sleep(1750);
 					}
 				}
 			}

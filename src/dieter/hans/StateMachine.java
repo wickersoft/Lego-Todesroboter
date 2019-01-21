@@ -8,6 +8,7 @@ public class StateMachine {
 	private final RobotTask taskLine = new TaskTrackLine();
 	private final RobotTask taskObst = new TaskTrackObstacle();
 	private final RobotTask taskCannon = new TaskTrackCannon();
+	private final RobotTask taskTransgender = new TaskTrackTransition();
 	
 	private RobotTask currentTask = taskMenu;
 	
@@ -17,6 +18,7 @@ public class StateMachine {
 		taskMenu.edge(3, taskLine);
 		taskMenu.edge(4, taskObst);
 		taskMenu.edge(5, taskCannon);
+		taskMenu.edge(6, taskTransgender);
 		
 		taskBridge.edge(-1, taskMenu);
 		taskBridge.edge(4, taskMaze);
@@ -26,6 +28,7 @@ public class StateMachine {
 		taskObst.edge(-1, taskMenu);
 		taskObst.edge(3, taskBridge);
 		taskCannon.edge(-1, taskMenu);
+		taskTransgender.edge(-1, taskMenu);
 	}
 	
 	public int tick() {
