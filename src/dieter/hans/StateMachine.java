@@ -19,9 +19,12 @@ public class StateMachine {
 		taskMenu.edge(5, taskCannon);
 		
 		taskBridge.edge(-1, taskMenu);
+		taskBridge.edge(4, taskMaze);
 		taskMaze.edge(-1, taskMenu);
 		taskLine.edge(-1, taskMenu);
+		taskLine.edge(2, taskObst);
 		taskObst.edge(-1, taskMenu);
+		taskObst.edge(3, taskBridge);
 		taskCannon.edge(-1, taskMenu);
 	}
 	

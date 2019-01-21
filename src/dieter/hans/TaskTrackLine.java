@@ -6,6 +6,7 @@ public class TaskTrackLine extends TrackTask {
 	private final PID pid = new PID(-1, 0, 0);
 	float[] lightValue = new float[3];
 	float[] touchValue = new float[1];
+	float[] ultValue = new float[3];
 	private int gapNumber = 0;
 	private boolean boxFound = false;
 
@@ -34,7 +35,13 @@ public class TaskTrackLine extends TrackTask {
 				sleep(250);
 				if (!honestSuchViech()) {
 					if (boxFound) {
-						return -1;
+						// blaues tape
+						/*if () {*/
+							HansDieter.S_DST.fetchSample(ultValue, 0);
+							LCD.drawString("" + ultValue[0], 0, 0);
+						/*} else {
+							return 2;
+						}*/
 					} else {
 						LCD.drawInt(gapNumber, 0, 0);
 						MotorController.setTurnSpeed(0);
@@ -57,23 +64,6 @@ public class TaskTrackLine extends TrackTask {
 					sleep(250);
 				}
 				
-				
-				
-//
-//				MotorController.steerRight(400);
-//				MotorController.setTurnSpeed(0);
-//				MotorController.setSpeed(0.8);
-//				sleep(1000);
-//				
-//				MotorController.steerLeft(200);
-//				MotorController.setTurnSpeed(0);
-//				MotorController.setSpeed(0.8);
-//				sleep(2300);
-//
-//				MotorController.steerLeft(600);
-//				MotorController.setTurnSpeed(0);
-//				MotorController.setSpeed(0.5);
-//				sleep(3000);
 				boxFound = true;
 				return 0;
 			}

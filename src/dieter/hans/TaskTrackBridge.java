@@ -13,6 +13,7 @@ public class TaskTrackBridge extends TrackTask {
 	
 	public void enter() {
 		HansDieter.M_ULT.rotateTo(95);
+		MotorController.setTurnSpeed(0);
 		MotorController.setSpeed(0.8);
 		sleep(2500);
 		//HansDieter.S_ANG.fetchSample(gyrValue, 0);
