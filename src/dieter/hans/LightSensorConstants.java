@@ -12,10 +12,28 @@ public class LightSensorConstants {
 	public static final double[] RED_TAPE = {0.11, 0.02, 0.01};	
 	public static final double[] FUCK_TAPE = {0.02, 0.01, 0.00};
 	
-	public static String getCustomColor(double[] rgb)
+	public static final double[][] COLORS = {FLOOR, WHITE_TAPE, BLUE_TAPE, RED_TAPE, FUCK_TAPE};
+	public static final int[] customColorIds = {7, 6, 2, 0, 14};
+	
+	public static int getCustomColor(float[] rgb)
 	{
+		double[] fugg = new double[rgb.length];
+		for(int i = 0; i < rgb.length; i++) {
+				fugg[i] = rgb[i];
+		}
 		
-		return "no color";
+		double distance = Double.POSITIVE_INFINITY;
+		int customColor = 14;
+		
+		for(int i = 0; i <COLORS.length; i++) {
+			double d = getDistanceSqr(fugg, COLORS[i]);
+			if(d < distance) {
+				distance = d;
+				customColor = customColorIds[i];
+			}
+		}
+		
+		return customColor;
 	}
 	
 	public static double getShit(float[] color) {
