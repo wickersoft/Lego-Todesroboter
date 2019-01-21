@@ -22,6 +22,12 @@ public class TaskTrackMaze extends TrackTask
   return dist / (float)count;
  }
  
+ public void enter() {
+		HansDieter.M_ULT.rotateTo(0);
+		HansDieter.M_ULT.stop();
+	}
+ 
+ 
  @Override
  public int runTrack()
  {

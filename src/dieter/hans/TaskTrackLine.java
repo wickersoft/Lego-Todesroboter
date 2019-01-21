@@ -49,21 +49,31 @@ public class TaskTrackLine extends TrackTask {
 				MotorController.setSpeed(-0.5);
 				sleep(1000);
 				MotorController.setSpeed(0);
-
 				MotorController.steerRight(400);
-				MotorController.setTurnSpeed(0);
-				MotorController.setSpeed(0.8);
-				sleep(1000);
 				
-				MotorController.steerLeft(200);
-				MotorController.setTurnSpeed(0);
-				MotorController.setSpeed(0.8);
-				sleep(2300);
-
-				MotorController.steerLeft(500);
-				MotorController.setTurnSpeed(0);
-				MotorController.setSpeed(0.5);
-				sleep(3000);
+				for (int i = 0; i < 10; i++) {
+					MotorController.travelForward1(500, 0.5);
+					MotorController.setTurnSpeed(0.5);
+					sleep(250);
+				}
+				
+				
+				
+//
+//				MotorController.steerRight(400);
+//				MotorController.setTurnSpeed(0);
+//				MotorController.setSpeed(0.8);
+//				sleep(1000);
+//				
+//				MotorController.steerLeft(200);
+//				MotorController.setTurnSpeed(0);
+//				MotorController.setSpeed(0.8);
+//				sleep(2300);
+//
+//				MotorController.steerLeft(600);
+//				MotorController.setTurnSpeed(0);
+//				MotorController.setSpeed(0.5);
+//				sleep(3000);
 				boxFound = true;
 				return 0;
 			}

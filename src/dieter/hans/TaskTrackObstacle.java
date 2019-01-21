@@ -15,7 +15,7 @@ public class TaskTrackObstacle extends TrackTask {
 	public void enter() {
 		MotorController.steerLeft();
 		MotorController.steerLeft();
-		HansDieter.M_ULT.rotateTo(18);
+		HansDieter.M_ULT.rotateTo(20);
 		HansDieter.M_ULT.stop();
 		MotorController.steerLeft(200);
 		MotorController.travelForward1(500, -0.3);
@@ -52,11 +52,11 @@ public class TaskTrackObstacle extends TrackTask {
 			LCD.drawString("box found:" + box_found, 0, 0);
 			sleep(100);
 			return 0;
-		} else if (ultValue[0] < 0.27 && ultValue[0] > 0.15 && !box_found && !suck && !bridge) {
+		} else if (ultValue[0] < 0.28 && ultValue[0] > 0.15 && !box_found && !suck && !bridge) {
 			suck = true;
 			sleep(100);
 			return 0;
-		} else if (ultValue[0] < 0.27 && ultValue[0] > 0.15 && !box_found && suck && !bridge) {
+		} else if (ultValue[0] < 0.28 && ultValue[0] > 0.15 && !box_found && suck && !bridge) {
 			box_found = true;
 			far = true;
 			sleep(100);
@@ -74,18 +74,18 @@ public class TaskTrackObstacle extends TrackTask {
 				MotorController.steerRight(230);
 				MotorController.travelForward1(2000, -0.8);
 				MotorController.steerRight(100);
-				MotorController.travelForward1(4000, -0.8);
+				MotorController.travelForward1(5000, -0.8);
 				suck = false;
 				box_found = false;
 				bridge = true;
 				far = false;
 				return -1;
 			} else {
-				MotorController.travelForward1(2500, -0.3);
+				MotorController.travelForward1(2600, -0.3);
 				MotorController.steerRight();
 				MotorController.steerRight(200);
-				MotorController.travelForward1(2000, -1);
-				MotorController.steerRight(100);
+				MotorController.travelForward1(2200, -1);
+				MotorController.steerRight(200);
 				MotorController.travelForward1(50, -1);
 				MotorController.travelForward1(4000, -1);
 				suck = false;
