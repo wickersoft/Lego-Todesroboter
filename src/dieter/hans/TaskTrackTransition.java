@@ -1,11 +1,17 @@
 package dieter.hans;
 
+import lejos.hardware.Sound;
+
 public class TaskTrackTransition extends TrackTask {
 
 	private static final int BLUE = 2;
 	private final PID pid = new PID(0.75, 0, 0.35);
 	private float[] colorValue = new float[3];
 	int tick = 0;
+	
+	public void enter() {
+		Sound.playSample(new File("/imperial-march.wav"), 100);
+	}
 
 	@Override
 	public int runTrack() {

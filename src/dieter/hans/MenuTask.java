@@ -8,7 +8,7 @@ public class MenuTask extends RobotTask {
 	
 	@Override
 	public int run() {
-		LCD.clear();
+		LCD.clearDisplay();
 		TextMenu menu = new TextMenu(new String[] {"Bruecke", "Labyrinth", "Linie", "Hindernis", "Kanone", "Trans", "Beenden"}, 1, "Task waehlen");
 		HansDieter.M_ULT.rotateTo(0);
 		int selection = menu.select();
@@ -19,7 +19,7 @@ public class MenuTask extends RobotTask {
 			return 0;
 		}
 		
-		LCD.clear();
+		LCD.clearDisplay();
 		
 		while(Button.getButtons() != 0) {
 			System.out.println("...");
