@@ -12,7 +12,6 @@ public class TaskTrackTransition extends TrackTask {
 	int tick = 0;
 	
 	public void enter() {
-		Sound.playSample(new File("/imperial-march.wav"), 100);
 		HansDieter.M_ULT.rotateTo(0);
 		HansDieter.M_ULT.stop();
 		MotorController.travelForward1(600, 0.8);

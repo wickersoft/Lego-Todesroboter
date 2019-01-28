@@ -1,5 +1,7 @@
 package dieter.hans;
 
+import lejos.hardware.Sound;
+
 public class TaskTrackMaze extends TrackTask {
 	private static final int FUCK = 14;
 	private static final int BLACK = 7;
@@ -41,10 +43,12 @@ public class TaskTrackMaze extends TrackTask {
 			break;
 		case RED:
 			red_found = true;
+			Sound.beep();
 			System.out.println("RED FOUND");
 			break;
 		case WHITE:
 			System.out.println("WHITE FOUND");
+			Sound.beep();
 			white_found = true;
 			break;
 		}
