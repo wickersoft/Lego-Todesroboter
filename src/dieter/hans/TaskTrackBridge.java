@@ -12,7 +12,7 @@ public class TaskTrackBridge extends TrackTask {
 	double zeroAngle = 0;
 	
 	public void enter() {
-		HansDieter.M_ULT.rotateTo(95);
+		HansDieter.M_ULT.rotateTo(75);
 		MotorController.setTurnSpeed(0);
 		MotorController.setSpeed(0.8);
 		sleep(2500);

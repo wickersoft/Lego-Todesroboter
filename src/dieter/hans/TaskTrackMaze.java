@@ -27,6 +27,7 @@ public class TaskTrackMaze extends TrackTask {
 		HansDieter.S_TCH.fetchSample(touchValue, 0);
 		HansDieter.S_TCH2.fetchSample(touchValue1, 0);
 		if (touchValue[0] == 1.0 || touchValue1[0] == 1.0) {
+			MotorController.travelForward1(200, -0.7);
 			MotorController.setSpeed(0);
 			MotorController.setTurnSpeed(0.5);
 			sleep(1500 + HansDieter.RND.nextInt() % 1000);

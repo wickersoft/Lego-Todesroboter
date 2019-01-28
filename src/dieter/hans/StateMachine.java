@@ -9,6 +9,7 @@ public class StateMachine {
 	private final RobotTask taskObst = new TaskTrackObstacle();
 	private final RobotTask taskCannon = new TaskTrackCannon();
 	private final RobotTask taskTransgender = new TaskTrackTransition();
+	private final RobotTask taskTransgender1 = new TaskTrackTransition1();
 	
 	private RobotTask currentTask = taskMenu;
 	
@@ -20,15 +21,13 @@ public class StateMachine {
 		taskMenu.edge(5, taskCannon);
 		taskMenu.edge(6, taskTransgender);
 		
-		taskBridge.edge(-1, taskMenu);
-		taskBridge.edge(4, taskMaze);
+		taskBridge.edge(-1, taskMaze);
 		taskMaze.edge(-1, taskMenu);
-		taskLine.edge(-1, taskMenu);
-		taskLine.edge(2, taskObst);
-		taskObst.edge(-1, taskMenu);
-		taskObst.edge(3, taskBridge);
+		taskLine.edge(-1, taskTransgender);
+		taskObst.edge(-1, taskTransgender1);
 		taskCannon.edge(-1, taskMenu);
-		taskTransgender.edge(-1, taskMenu);
+		taskTransgender.edge(-1, taskObst);
+		taskTransgender1.edge(-1, taskBridge);
 	}
 	
 	public int tick() {

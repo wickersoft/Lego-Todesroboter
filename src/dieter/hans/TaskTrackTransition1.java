@@ -1,10 +1,6 @@
 package dieter.hans;
 
-import java.io.File;
-
-import lejos.hardware.Sound;
-
-public class TaskTrackTransition extends TrackTask {
+public class TaskTrackTransition1 extends TrackTask {
 
 	private static final int BLUE = 2;
 	private final PID pid = new PID(0.75, 0, 0.35);
@@ -12,30 +8,17 @@ public class TaskTrackTransition extends TrackTask {
 	int tick = 0;
 	
 	public void enter() {
-		Sound.playSample(new File("/imperial-march.wav"), 100);
 		HansDieter.M_ULT.rotateTo(0);
 		HansDieter.M_ULT.stop();
-		MotorController.travelForward1(600, 0.8);
-		MotorController.steerRight(200);
+		MotorController.travelForward1(800, 1);
+		MotorController.steerLeft();
+		MotorController.steerLeft(200);
 	}
 	
 	@Override
 	public int runTrack() {
-		MotorController.setSpeed(0.2);
-		float distance = 100 * getDistance();
-		if(distance == Float.POSITIVE_INFINITY) {
-			distance = 0;
-		}
+		MotorController.setSpeed(0.4);
 		
-		float normDistance = (distance - 4) / 20;
-		double steer = pid.tick(normDistance);
-		MotorController.setTurnSpeed(0.3 * steer);
-
-		if (++tick % 100 == 0) {
-			System.out.println("D: " + distance);
-			System.out.println("N: " + normDistance);
-			System.out.println("S: " + steer);
-		}
 
 		HansDieter.S_RGB.fetchSample(colorValue, 0);
 		if (LightSensorConstants.getCustomColor(colorValue) == BLUE) {
