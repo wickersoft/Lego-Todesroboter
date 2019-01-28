@@ -16,7 +16,6 @@ public class TaskTrackObstacle extends TrackTask {
 		MotorController.steerLeft();
 		MotorController.steerLeft();
 		HansDieter.M_ULT.rotateTo(20);
-		HansDieter.M_ULT.stop();
 		MotorController.steerLeft(200);
 		MotorController.travelForward1(500, -0.3);
 	}

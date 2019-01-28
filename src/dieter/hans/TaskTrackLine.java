@@ -18,6 +18,7 @@ public class TaskTrackLine extends TrackTask {
 		gapNumber = 0;
 		tcr();
 		boxFound = false;
+		HansDieter.M_ULT.rotateTo(0);
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class TaskTrackLine extends TrackTask {
 				MotorController.setSpeed(0);
 				MotorController.steerRight(400);
 				
-				for (int i = 0; i < 10; i++) {
+				for (int i = 0; i < 9; i++) {
 					MotorController.travelForward1(500, 0.5);
 					MotorController.setTurnSpeed(0.5);
 					sleep(250);
