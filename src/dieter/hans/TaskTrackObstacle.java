@@ -68,12 +68,14 @@ public class TaskTrackObstacle extends TrackTask {
 			System.out.println("Box schieben");
 
 			if (!far) {
-				MotorController.travelForward1(2500, -0.3);
+				MotorController.travelForward1(2600, -0.3);
 				MotorController.steerRight();
-				MotorController.steerRight(230);
-				MotorController.travelForward1(2000, -0.8);
 				MotorController.steerRight(100);
-				MotorController.travelForward1(5000, -0.8);
+				MotorController.travelForward1(2000, -1);
+				MotorController.steerRight(130);
+				MotorController.travelForward1(2000, -1);
+				MotorController.steerRight(50);
+				MotorController.travelForward1(2000, -1);
 				suck = false;
 				box_found = false;
 				bridge = true;
@@ -82,11 +84,12 @@ public class TaskTrackObstacle extends TrackTask {
 			} else {
 				MotorController.travelForward1(2600, -0.3);
 				MotorController.steerRight();
-				MotorController.steerRight(200);
+				MotorController.steerRight(150);
 				MotorController.travelForward1(2200, -1);
-				MotorController.steerRight(200);
-				MotorController.travelForward1(50, -1);
-				MotorController.travelForward1(4000, -1);
+				MotorController.steerRight(80);
+				MotorController.travelForward1(2000, -1);
+				MotorController.steerRight(30);
+				MotorController.travelForward1(1000, -1);
 				suck = false;
 				box_found = false;
 				bridge = true;

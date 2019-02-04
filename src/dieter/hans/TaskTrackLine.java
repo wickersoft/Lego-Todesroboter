@@ -23,7 +23,7 @@ public class TaskTrackLine extends TrackTask {
 
 	@Override
 	public int runTrack() {
-		MotorController.setSpeed(1 - anxiety);
+		MotorController.setSpeed(1.15 - anxiety);
 		try {
 			HansDieter.S_RGB.fetchSample(lightValue, 0);
 			HansDieter.S_TCH.fetchSample(touchValue, 0);
@@ -110,7 +110,7 @@ public class TaskTrackLine extends TrackTask {
 			HansDieter.S_RGB.fetchSample(lightValue, 0);
 			double light = LightSensorConstants.getShit(lightValue);
 			try {
-				Thread.sleep(26);
+				Thread.sleep(23);
 			} catch (Exception ex) {
 			}
 		}

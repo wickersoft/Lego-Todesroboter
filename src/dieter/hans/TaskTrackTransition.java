@@ -12,23 +12,23 @@ public class TaskTrackTransition extends TrackTask {
 	int tick = 0;
 	
 	public void enter() {
-		HansDieter.M_ULT.rotateTo(0);
+		HansDieter.M_ULT.rotateTo(10);
 		HansDieter.M_ULT.stop();
 		MotorController.travelForward1(600, 0.8);
-		MotorController.steerRight(200);
+		MotorController.steerRight(300);
 	}
 	
 	@Override
 	public int runTrack() {
-		MotorController.setSpeed(0.2);
+		MotorController.setSpeed(0.3);
 		float distance = 100 * getDistance();
 		if(distance == Float.POSITIVE_INFINITY) {
 			distance = 0;
 		}
 		
-		float normDistance = (distance - 4) / 20;
+		float normDistance = (distance - 5) / 12;
 		double steer = pid.tick(normDistance);
-		MotorController.setTurnSpeed(0.3 * steer);
+		MotorController.setTurnSpeed(0.5 * steer);
 
 		if (++tick % 100 == 0) {
 			System.out.println("D: " + distance);

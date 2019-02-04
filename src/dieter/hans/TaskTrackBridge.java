@@ -12,7 +12,7 @@ public class TaskTrackBridge extends TrackTask {
 	double zeroAngle = 0;
 	
 	public void enter() {
-		HansDieter.M_ULT.rotateTo(75);
+		HansDieter.M_ULT.rotateTo(90);
 		MotorController.setTurnSpeed(0);
 		MotorController.setSpeed(0.8);
 		sleep(2500);
@@ -32,7 +32,7 @@ public class TaskTrackBridge extends TrackTask {
 		
 		
 		if(ultValue[0] > 0.1) {
-			MotorController.setSpeed(0.35);
+			MotorController.setSpeed(0.3);
 			MotorController.setTurnSpeed(-0.3);
 			
 			ultValue[0] = -1;
@@ -45,8 +45,8 @@ public class TaskTrackBridge extends TrackTask {
 			sleep(2000);
 			return -1;
 		} else {
-			MotorController.setSpeed(0.35);
-			MotorController.setTurnSpeed(0.4);
+			MotorController.setSpeed(0.3);
+			MotorController.setTurnSpeed(0.2);
 			ultValue[0] = 1;
 		}
 		
@@ -61,7 +61,7 @@ public class TaskTrackBridge extends TrackTask {
 			sleep(700);
 			MotorController.setSpeed(0);
 			
-			MotorController.steerRight(100);
+			MotorController.steerRight(200);
 			MotorController.setTurnSpeed(0);
 			MotorController.setSpeed(0.8);
 			sleep(1000);
